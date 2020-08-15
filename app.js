@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const upload = require('express-fileupload');
 const to = require('await-to-js').default;
@@ -39,4 +41,4 @@ router.post('/', async (req, res) => {
 
 app.use(router);
 
-app.listen('3000');
+app.listen(process.env.PORT || 3000);
