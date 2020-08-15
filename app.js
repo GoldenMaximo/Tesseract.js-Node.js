@@ -1,6 +1,7 @@
 const express = require('express');
 const upload = require('express-fileupload');
 const to = require('await-to-js').default;
+const Tesseract = require('tesseract.js');
 
 const app = express();
 
@@ -20,11 +21,19 @@ router.get('/', (req, res) => {
 router.post('/', async (req, res) => {
     const file = req.files.file;
     const fileName = file.name;
+    let err;
 
-    const [err, result] = await to(file.mv(`./images/${fileName}`));
+    [err] = await to(file.mv(`./images/${fileName}`));
+    [err, dataObj] = await to(Tesseract.recognize(
+        `./images/${fileName}`,
+        'eng',
+        { logger: m => console.log(m) }
+    ));
+
+      console.log('like magic:', dataObj.data.text);
 
     res.render('home', {
-        text: `${err ? err : 'ayo bruv check this out'}`
+        text: `ayo bruv check this out:  ${err ? err : dataObj.data.text}`
     });
 });
 
