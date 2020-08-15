@@ -46,8 +46,7 @@ After installed, you can start the application by running it with npm:
 npm start
 ```
 
-*This will start the server at `localhost:3000`.*
-<!-- (if you didn't change the `PORT` property on `.env`) -->
+*This will start the server at `localhost:3000`. (if you didn't change the `PORT` property on `.env`)*
 
 ## Meta
 
