@@ -13,11 +13,17 @@ Upload an image and see it's text contents rendered on HTML. Simple but pretty c
 
 ## Inspiration
 
-A friend of mine was complaining about how he had to input some numbers from images manually into excel to do calculations and I was like "Hmmm, seems like a job for computers not humans, perhaps with some effort I can make him unemployed".
+A friend of mine was complaining about how he had to input some numbers taken from photos manually into an Excel spreadsheet to do calculations and I was like "Hmmm, seems like a job I could automate.". Then I started to play around with some random images seeig if I could do some basic OCR first.
 
-## DEMO
+## DEMO(s)
 
-![](public/demo.jpg)
+![](public/screenshot_1.png)
+
+![](public/screenshot_2.png)
+
+![](public/screenshot_3.png)
+
+![](public/screenshot_4.png)
 
 ## Installation
 
