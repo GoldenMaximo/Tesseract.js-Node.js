@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
       console.log('like magic:', dataObj.data.text);
 
     res.render('home', {
-        text: `ayo bruv check this out:  ${err ? err : dataObj.data.text}`
+        text: `RESULT: ${err ? err : dataObj.data.text}`
     });
 });
 
