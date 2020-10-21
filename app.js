@@ -3,7 +3,8 @@ require('dotenv').config();
 const express = require('express');
 const upload = require('express-fileupload');
 const to = require('await-to-js').default;
-const Tesseract = require('tesseract.js');
+const { createWorker } = require('tesseract.js');
+const path = require('path');
 
 const app = express();
 
@@ -13,6 +14,8 @@ const router = express.Router();
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
+
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 router.get('/', (req, res) => {
     res.render('home', {
@@ -26,16 +29,21 @@ router.post('/', async (req, res) => {
     let err;
 
     [err] = await to(file.mv(`./images/${fileName}`));
-    [err, dataObj] = await to(Tesseract.recognize(
-        `./images/${fileName}`,
-        'eng',
-        { logger: m => console.log(m) }
-    ));
 
-      console.log('like magic:', dataObj.data.text);
+    const worker = createWorker({
+        logger: m => console.log(m)
+    });
+
+    await worker.load();
+    await worker.loadLanguage('eng+por');
+    await worker.initialize('eng');
+    await worker.initialize('por');
+    [err, dataObj] = await to(worker.recognize(`./images/${fileName}`));
+    await worker.terminate();
 
     res.render('home', {
-        text: `RESULT: ${err ? err : dataObj.data.text}`
+        text: `${err ? err : dataObj.data.text}`,
+        imgPath: `./images/${fileName}`
     });
 });
 

@@ -17,13 +17,13 @@ A friend of mine was complaining about how he had to input some numbers taken fr
 
 ## DEMO(s)
 
-![](public/Screenshot_1.png)
+![](public/demo1.png)
 
-![](public/Screenshot_2.png)
+![](public/demo2.png)
 
-![](public/Screenshot_3.png)
+![](public/demo3.png)
 
-![](public/Screenshot_4.png)
+![](public/demo4.png)
 
 ## Installation
 
